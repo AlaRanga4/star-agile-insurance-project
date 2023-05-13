@@ -38,5 +38,15 @@ pipeline {
         steps {
             sh "docker push alaranga4/insurance "
         }}
-   }
-}
+	stage ('deploying ansible-playbook')
+        { steps {
+        ansiblePlaybook credentialsId: 'ansiblelogin', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'deploy-playbook.yml'
+        }
+	}  
+	
+	
+	
+	
+	}
+	}
+	
